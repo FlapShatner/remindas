@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Reminda",
+  name: "Remindas",
   description: "A simple reminder app for forgetful people.",
   mainNav: [
     {
