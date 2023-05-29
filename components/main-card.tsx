@@ -1,8 +1,8 @@
 "use client"
 
-import { FunctionComponent, useRef } from "react"
+import { FunctionComponent } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { FieldError, SubmitHandler, useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -54,40 +54,52 @@ const MainCard: FunctionComponent<Props> = () => {
       </CardHeader>
       <CardContent>
         <form>
-          <div className="grid w-full items-center gap-4">
+          <div className="grid w-full items-center gap-1">
             <MainInput
               id="number"
               type="string"
-              placeholder="Phone #"
+              placeholder="000-000-0000"
               label="Your Phone #"
               register={register}
               name={"number"}
             />
-            <ErrorMessage>{errors.number?.message}</ErrorMessage>
+            <ErrorMessage>{errors.numbers?.message}</ErrorMessage>
             <div className="flex flex-col gap-2 md:flex-row">
-              <MainInput
-                id="title"
-                type="text"
-                placeholder="What's happening?"
-                label="Remind me of:"
-                register={register}
-                name={"title"}
-              />
-              <MainInput
-                id="date"
-                type="date"
-                label="On:"
-                register={register}
-                name={"date"}
-              />
-              <MainInput
-                id="time"
-                type="time"
-                label="At:"
-                register={register}
-                name={"time"}
-              />
+              <div>
+                <MainInput
+                  id="title"
+                  type="text"
+                  placeholder="What's happening?"
+                  label="Remind me of:"
+                  register={register}
+                  name={"title"}
+                />
+              </div>
+              <div>
+                <MainInput
+                  id="date"
+                  type="date"
+                  label="On:"
+                  register={register}
+                  name={"date"}
+                />
+              </div>
+              <div>
+                <MainInput
+                  id="time"
+                  type="time"
+                  label="At:"
+                  register={register}
+                  name={"time"}
+                />
+              </div>
             </div>
+            <ErrorMessage>
+              {errors.title?.message ??
+                errors.date?.message ??
+                errors.time?.message ??
+                null}
+            </ErrorMessage>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="body">Note</Label>
               <Textarea
@@ -96,6 +108,7 @@ const MainCard: FunctionComponent<Props> = () => {
                 register={register}
                 name={"body"}
               />
+              <ErrorMessage>{errors.body?.message}</ErrorMessage>
             </div>
           </div>
           <div className="flex justify-center">
