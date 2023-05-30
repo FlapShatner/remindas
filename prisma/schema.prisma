@@ -10,7 +10,8 @@ datasource db {
 
 model Event {
   id Int @id @default(autoincrement())
-  name String
-  note String?
-  dateTime DateTime 
+  number String
+  title String
+  body String?
+  dateTime DateTime  
 }

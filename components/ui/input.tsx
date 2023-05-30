@@ -1,12 +1,13 @@
 import * as React from "react"
-import { FieldValues, UseFormRegister } from "react-hook-form"
+import { UseFormRegister } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
+import { FormValues } from "@/components/main-card"
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  register: UseFormRegister<FieldValues>
-  name: string
+  register: UseFormRegister<FormValues>
+  name: keyof FormValues
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(

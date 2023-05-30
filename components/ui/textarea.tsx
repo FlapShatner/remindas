@@ -1,12 +1,15 @@
 import * as React from "react"
-import { FieldValues, UseFormRegister } from "react-hook-form"
+import { UseFormRegister } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
 
+import { FormValues } from "../main-card"
+
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  register: UseFormRegister<FieldValues>
-  name: string
+  register: UseFormRegister<FormValues>
+
+  name: keyof FormValues
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(

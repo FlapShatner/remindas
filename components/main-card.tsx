@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { FunctionComponent } from "react"
+import { FunctionComponent, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
@@ -12,11 +13,39 @@ import { Textarea } from "@/components/ui/textarea"
 import { MainInput } from "@/components/main-input"
 
 import ErrorMessage from "./error-message"
+import Select from "./select"
 import { useToast } from "./ui/use-toast"
 
-interface Props {}
+interface Props {
+  sendEvent: (data: FormValues) => void
+}
 
-const MainCard: FunctionComponent<Props> = () => {
+export type FormValues = {
+  number: string
+  title: string
+  body: string
+  date: string
+  time: string
+  timeZone: string
+}
+
+const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
+  const defaultValues = {
+    number: "",
+    title: "",
+    body: "",
+    date: "",
+    time: "",
+    timeZone: "",
+  }
+
+  const selectOptions = [
+    { value: "America/New_York", label: "Eastern" },
+    { value: "America/Chicago", label: "Central" },
+    { value: "America/Denver", label: "Mountain" },
+    { value: "America/Los_Angeles", label: "Pacific" },
+  ]
+
   const { toast } = useToast()
   const schema = z.object({
     number: z
@@ -29,24 +58,34 @@ const MainCard: FunctionComponent<Props> = () => {
     body: z.string().max(300, "Maximum 300 characters"),
     date: z.string().min(1, "Please enter the date you want to be reminded on"),
     time: z.string().min(1, "Please enter the time you want to be reminded at"),
+    timeZone: z.string().min(1, "Please select a time zone"),
   })
-
-  type FormValues = z.infer<typeof schema>
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
+    formState,
+    formState: { errors, isSubmitSuccessful },
+    reset,
+  } = useForm<FormValues>({
     resolver: zodResolver(schema),
+    defaultValues: defaultValues,
   })
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log("Data:", data)
     toast({
       description: "Reminder set!",
     })
+    // sendEvent(data)
+    console.log(data)
   }
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset(defaultValues)
+    }
+  }, [isSubmitSuccessful, reset, formState])
+
   return (
     <Card className="m-auto w-full md:w-[560px]">
       <CardHeader>
@@ -55,44 +94,47 @@ const MainCard: FunctionComponent<Props> = () => {
       <CardContent>
         <form>
           <div className="grid w-full items-center gap-1">
-            <MainInput
-              id="number"
-              type="string"
-              placeholder="000-000-0000"
-              label="Your Phone #"
-              register={register}
-              name={"number"}
-            />
-            <ErrorMessage>{errors.numbers?.message}</ErrorMessage>
             <div className="flex flex-col gap-2 md:flex-row">
-              <div>
-                <MainInput
-                  id="title"
-                  type="text"
-                  placeholder="What's happening?"
-                  label="Remind me of:"
-                  register={register}
-                  name={"title"}
-                />
-              </div>
-              <div>
-                <MainInput
-                  id="date"
-                  type="date"
-                  label="On:"
-                  register={register}
-                  name={"date"}
-                />
-              </div>
-              <div>
-                <MainInput
-                  id="time"
-                  type="time"
-                  label="At:"
-                  register={register}
-                  name={"time"}
-                />
-              </div>
+              <MainInput
+                id="number"
+                type="string"
+                placeholder="000-000-0000"
+                label="Your Phone #"
+                register={register}
+                name={"number"}
+              />
+              <MainInput
+                id="title"
+                type="text"
+                placeholder="What's happening?"
+                label="Remind me of:"
+                register={register}
+                name={"title"}
+              />
+            </div>
+            <ErrorMessage>{errors.number?.message}</ErrorMessage>
+            <div className="flex flex-col gap-2 md:flex-row">
+              <MainInput
+                id="date"
+                type="date"
+                label="On:"
+                register={register}
+                name={"date"}
+              />
+
+              <MainInput
+                id="time"
+                type="time"
+                label="At:"
+                register={register}
+                name={"time"}
+              />
+              <Select
+                name={"timeZone"}
+                label="Time Zone"
+                register={register}
+                options={selectOptions}
+              />
             </div>
             <ErrorMessage>
               {errors.title?.message ??
