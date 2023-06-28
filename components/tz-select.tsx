@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { UseFormRegister } from "react-hook-form"
+import { Control, UseFormRegister } from "react-hook-form"
 
 import { Label } from "@/components/ui/label"
 import {
@@ -15,23 +15,28 @@ import {
 import { FormValues } from "./main-card"
 
 interface TzSelectProps {
-  register: UseFormRegister<FormValues>
+  options: {
+    value: string
+    label: string
+  }[]
+  onChange: (value: string) => void
 }
 
-const TzSelect: FC<TzSelectProps> = ({ register }) => {
+const TzSelect: FC<TzSelectProps> = ({ options, onChange }) => {
   return (
     <div className="flex flex-col space-y-1.5">
       <Label htmlFor="timezone">Timezone</Label>
-      <Select>
+      <Select onValueChange={onChange}>
         <SelectTrigger className="w-[180px]">
-          <SelectValue {...register("timeZone")} placeholder="Select a fruit" />
+          <SelectValue placeholder="Select a Time Zone" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectItem value="EST">US/Eastern</SelectItem>
-            <SelectItem value="CST">US/Central</SelectItem>
-            <SelectItem value="MST">US/Mountain</SelectItem>
-            <SelectItem value="PST">US/Pacific</SelectItem>
+            {options.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                US / {option.label}
+              </SelectItem>
+            ))}
           </SelectGroup>
         </SelectContent>
       </Select>

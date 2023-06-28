@@ -13,5 +13,6 @@ model Event {
   number String
   title String
   body String?
-  dateTime DateTime  
+  dateTime DateTime
+  timeZone String  
 }

@@ -3,7 +3,7 @@
 
 import { FunctionComponent, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -14,6 +14,7 @@ import { MainInput } from "@/components/main-input"
 
 import ErrorMessage from "./error-message"
 import Select from "./select"
+import TzSelect from "./tz-select"
 import { useToast } from "./ui/use-toast"
 
 interface Props {
@@ -62,6 +63,7 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
   })
 
   const {
+    control,
     register,
     handleSubmit,
     formState,
@@ -76,8 +78,8 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
     toast({
       description: "Reminder set!",
     })
-    // sendEvent(data)
-    console.log(data)
+    sendEvent(data)
+    // console.log(data)
   }
 
   useEffect(() => {
@@ -129,11 +131,18 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
                 register={register}
                 name={"time"}
               />
-              <Select
+              {/* <Select
                 name={"timeZone"}
                 label="Time Zone"
                 register={register}
                 options={selectOptions}
+              /> */}
+              <Controller
+                name="timeZone"
+                control={control}
+                render={({ field: { onChange } }) => (
+                  <TzSelect onChange={onChange} options={selectOptions} />
+                )}
               />
             </div>
             <ErrorMessage>

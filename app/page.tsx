@@ -7,7 +7,7 @@ import MainCard, { FormValues } from "@/components/main-card"
 export default function IndexPage() {
   const sendEvent = async (data: FormValues) => {
     "use server"
-    const { number, title, body, date, time } = data
+    const { number, title, body, date, time, timeZone } = data
     const dateTime = moment(`${date} ${time}`)
     const response = await prisma.event.create({
       data: {
@@ -15,6 +15,7 @@ export default function IndexPage() {
         title,
         body,
         dateTime: dateTime.toDate(),
+        timeZone,
       },
     })
     console.log(response)
