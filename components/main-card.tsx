@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { sendTest } from "@/lib/sendTest"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -13,7 +14,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { MainInput } from "@/components/main-input"
 
 import ErrorMessage from "./error-message"
-import Select from "./select"
 import TzSelect from "./tz-select"
 import { useToast } from "./ui/use-toast"
 
@@ -79,6 +79,7 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
       description: "Reminder set!",
     })
     sendEvent(data)
+    // sendTest(data)
     // console.log(data)
   }
 
@@ -131,12 +132,6 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
                 register={register}
                 name={"time"}
               />
-              {/* <Select
-                name={"timeZone"}
-                label="Time Zone"
-                register={register}
-                options={selectOptions}
-              /> */}
               <Controller
                 name="timeZone"
                 control={control}
