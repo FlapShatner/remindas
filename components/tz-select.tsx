@@ -25,7 +25,7 @@ const TzSelect: FC<TzSelectProps> = ({ onChange }) => {
     const [country, city] = zone.split("/")
     return {
       value: zone,
-      label: city,
+      label: zone,
     }
   })
 
@@ -41,7 +41,7 @@ const TzSelect: FC<TzSelectProps> = ({ onChange }) => {
           <SelectGroup>
             {zones.map((zone) => (
               <SelectItem key={zone.value} value={zone.value}>
-                US / {zone.label}
+                {zone.label}
               </SelectItem>
             ))}
           </SelectGroup>
