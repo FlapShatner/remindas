@@ -1,4 +1,5 @@
 import { FC } from "react"
+import moment from "moment-timezone"
 import { Control, UseFormRegister } from "react-hook-form"
 
 import { Label } from "@/components/ui/label"
@@ -15,26 +16,32 @@ import {
 import { FormValues } from "./main-card"
 
 interface TzSelectProps {
-  options: {
-    value: string
-    label: string
-  }[]
   onChange: (value: string) => void
 }
 
-const TzSelect: FC<TzSelectProps> = ({ options, onChange }) => {
+const TzSelect: FC<TzSelectProps> = ({ onChange }) => {
+  const zonesForUS = moment.tz.zonesForCountry("US")
+  const zones = zonesForUS.map((zone) => {
+    const [country, city] = zone.split("/")
+    return {
+      value: zone,
+      label: city,
+    }
+  })
+
+  const tz = moment.tz.guess()
   return (
     <div className="flex flex-col space-y-1.5">
       <Label htmlFor="timezone">Timezone</Label>
-      <Select onValueChange={onChange}>
+      <Select defaultValue={tz} onValueChange={onChange}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select a Time Zone" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {options.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
-                US / {option.label}
+            {zones.map((zone) => (
+              <SelectItem key={zone.value} value={zone.value}>
+                US / {zone.label}
               </SelectItem>
             ))}
           </SelectGroup>

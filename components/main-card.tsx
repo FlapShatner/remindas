@@ -40,13 +40,6 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
     timeZone: "",
   }
 
-  const selectOptions = [
-    { value: "America/New_York", label: "Eastern" },
-    { value: "America/Chicago", label: "Central" },
-    { value: "America/Denver", label: "Mountain" },
-    { value: "America/Los_Angeles", label: "Pacific" },
-  ]
-
   const { toast } = useToast()
   const schema = z.object({
     number: z
@@ -136,7 +129,7 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
                 name="timeZone"
                 control={control}
                 render={({ field: { onChange } }) => (
-                  <TzSelect onChange={onChange} options={selectOptions} />
+                  <TzSelect onChange={onChange} />
                 )}
               />
             </div>

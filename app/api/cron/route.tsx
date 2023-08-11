@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from "next/server"
 import moment from "moment-timezone"
 
 import { prisma } from "@/lib/db"
-import { sendMessage } from "@/app/api/cron/sendMessage"
+import { sendMessage } from "@/app/api/cron/twilio"
 
-export async function POST(req: NextRequest) {
-  const data = await req.json()
-  sendMessage(data)
-  return NextResponse.json({ message: "Success" })
-}
+// export async function POST(req: NextRequest) {
+//   const data = await req.json()
+//   sendMessage(data)
+//   return NextResponse.json({ message: "Success" })
+// }
 
 export async function GET() {
   const date = new Date().toUTCString()
