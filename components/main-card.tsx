@@ -73,7 +73,8 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
     })
     sendEvent(data)
     // sendTest(data)
-    // console.log(data)
+
+    console.log(data)
   }
 
   useEffect(() => {
@@ -88,7 +89,7 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
         <CardTitle>Set A Reminder</CardTitle>
       </CardHeader>
       <CardContent>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full items-center gap-1">
             <div className="flex flex-col gap-2 md:flex-row">
               <MainInput

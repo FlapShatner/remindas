@@ -13,6 +13,7 @@ model Event {
   number String
   title String
   body String?
-  dateTime DateTime
-  timeZone String  
+  dateTime String
+  timeZone String
+  utcTime String  
 }

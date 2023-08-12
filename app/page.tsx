@@ -8,14 +8,16 @@ export default function IndexPage() {
   const sendEvent = async (data: FormValues) => {
     "use server"
     const { number, title, body, date, time, timeZone } = data
-    const dateTime = moment(`${date} ${time}`)
+    const dateTime = moment(`${date} ${time}`).tz(`${timeZone}`)
+
     const response = await prisma.event.create({
       data: {
         number,
         title,
         body,
-        dateTime: dateTime.toDate(),
+        dateTime: dateTime.format(),
         timeZone,
+        utcTime: dateTime.utc().format(),
       },
     })
     console.log(response)

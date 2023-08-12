@@ -6,7 +6,7 @@ import { FormValues } from "@/components/main-card"
 export const sendEvent = async (data: FormValues) => {
   "use server"
   const { number, title, body, date, time, timeZone } = data
-  const dateTime = moment(`${date} ${time}`)
+  const dateTime = moment(`${date} ${time}, ${timeZone}`)
   const response = await prisma.event.create({
     data: {
       number,
