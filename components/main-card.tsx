@@ -8,7 +8,6 @@ import moment from "moment-timezone"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { sendTest } from "@/lib/sendTest"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"

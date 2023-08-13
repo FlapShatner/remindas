@@ -1,6 +1,5 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import moment from "moment-timezone"
-import { Control, UseFormRegister } from "react-hook-form"
 
 import { Label } from "@/components/ui/label"
 import {
@@ -8,12 +7,9 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-
-import { FormValues } from "./main-card"
 
 interface TzSelectProps {
   onChange: (value: string) => void

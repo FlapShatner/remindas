@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import { FieldValues, UseFormRegister } from "react-hook-form"
+import { UseFormRegister } from "react-hook-form"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
