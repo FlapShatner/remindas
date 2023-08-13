@@ -2,7 +2,9 @@
 "use client"
 
 import { FunctionComponent, useEffect } from "react"
+import { sendEvent } from "@/server/sendEvent"
 import { zodResolver } from "@hookform/resolvers/zod"
+import moment from "moment-timezone"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -17,9 +19,7 @@ import ErrorMessage from "./error-message"
 import TzSelect from "./tz-select"
 import { useToast } from "./ui/use-toast"
 
-interface Props {
-  sendEvent: (data: FormValues) => void
-}
+interface Props {}
 
 export type FormValues = {
   number: string
@@ -30,14 +30,15 @@ export type FormValues = {
   timeZone: string
 }
 
-const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
+const MainCard: FunctionComponent<Props> = () => {
+  const tz = moment.tz.guess()
   const defaultValues = {
     number: "",
     title: "",
     body: "",
     date: "",
     time: "",
-    timeZone: "",
+    timeZone: tz,
   }
 
   const { toast } = useToast()
@@ -129,8 +130,9 @@ const MainCard: FunctionComponent<Props> = ({ sendEvent }) => {
               <Controller
                 name="timeZone"
                 control={control}
+                defaultValue={tz}
                 render={({ field: { onChange } }) => (
-                  <TzSelect onChange={onChange} />
+                  <TzSelect tz={tz} onChange={onChange} />
                 )}
               />
             </div>

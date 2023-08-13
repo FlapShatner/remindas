@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import moment from "moment-timezone"
 import { Control, UseFormRegister } from "react-hook-form"
 
@@ -17,19 +17,18 @@ import { FormValues } from "./main-card"
 
 interface TzSelectProps {
   onChange: (value: string) => void
+  tz: string
 }
 
-const TzSelect: FC<TzSelectProps> = ({ onChange }) => {
+const TzSelect: FC<TzSelectProps> = ({ onChange, tz }) => {
   const zonesForUS = moment.tz.zonesForCountry("US")
   const zones = zonesForUS.map((zone) => {
-    const [country, city] = zone.split("/")
     return {
       value: zone,
       label: zone,
     }
   })
 
-  const tz = moment.tz.guess()
   return (
     <div className="flex flex-col space-y-1.5">
       <Label htmlFor="timezone">Timezone</Label>
