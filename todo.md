@@ -11,3 +11,8 @@
 - delete and edit events
 - meta tags in config/site.ts
 - write instructions page
+
+- add text opt-in to account creation form
+- create opt-in text verification flow
+- get number registered
+- have server check that number is verified before sending reminders
