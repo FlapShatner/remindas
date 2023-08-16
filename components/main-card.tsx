@@ -3,7 +3,6 @@
 
 import { FunctionComponent, useEffect } from "react"
 import { sendEvent } from "@/server/sendEvent"
-// import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
@@ -167,7 +166,6 @@ const MainCard: FunctionComponent<Props> = () => {
           </div>
         </form>
       </CardContent>
-      {/* <DevTool control={control} /> */}
     </Card>
   )
 }
