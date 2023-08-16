@@ -14,23 +14,23 @@ export async function GET() {
       },
     },
   })
+  if (events.length < 1) {
+    return NextResponse.json({ message: "No events", success: true })
+  }
   if (events.length > 0) {
-    events.forEach((event) => {
+    events.forEach(async (event) => {
       const formattedEvent = {
         body: `${event.title}\n${event.body && event.body}`,
         number: event.number,
       }
       try {
-        sendMessage(formattedEvent)
-        console.log("Sent", formattedEvent)
-        return NextResponse.json({ message: "Sent", success: true })
+        const result = await sendMessage(formattedEvent)
+        console.log("Sent", result)
       } catch (e) {
-        console.log(e)
-        console.log("Error", formattedEvent)
+        console.log("Error", e, "event:", formattedEvent)
         return NextResponse.json({ message: "Error", success: false })
       }
     })
+    return NextResponse.json({ message: "Sent", success: true })
   }
-  console.log("No events for " + date)
-  return NextResponse.json({ message: "No events for " + date, success: false })
 }
