@@ -22,12 +22,15 @@ export async function GET() {
       }
       try {
         sendMessage(formattedEvent)
+        console.log("Sent", formattedEvent)
         return NextResponse.json({ message: "Sent", success: true })
       } catch (e) {
         console.log(e)
+        console.log("Error", formattedEvent)
         return NextResponse.json({ message: "Error", success: false })
       }
     })
   }
-  return NextResponse.json({ message: "No events", success: false })
+  console.log("No events for " + date)
+  return NextResponse.json({ message: "No events for " + date, success: false })
 }
