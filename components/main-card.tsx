@@ -3,7 +3,7 @@
 
 import { FunctionComponent, useEffect } from "react"
 import { sendEvent } from "@/server/sendEvent"
-import { DevTool } from "@hookform/devtools"
+// import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
