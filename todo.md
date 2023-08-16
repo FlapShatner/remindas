@@ -12,7 +12,7 @@
 
 - validate form data on server
 - api route for creating events (fallback for server action)
-<!-- - set up cron job -->
+- set up cron job
 - have server check that number is verified before sending reminders
 -
 
