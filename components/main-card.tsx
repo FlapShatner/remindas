@@ -3,11 +3,12 @@
 
 import { FunctionComponent, useEffect } from "react"
 import { sendEvent } from "@/server/sendEvent"
+import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
-import moment from "moment-timezone"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { tzs } from "@/lib/tz"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -30,7 +31,9 @@ export type FormValues = {
 }
 
 const MainCard: FunctionComponent<Props> = () => {
-  const tz = moment.tz.guess()
+  const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone
+  const tz = tzs.filter((tz) => tz.value === userTz)[0].value
+
   const defaultValues = {
     number: "",
     title: "",
@@ -164,6 +167,7 @@ const MainCard: FunctionComponent<Props> = () => {
           </div>
         </form>
       </CardContent>
+      {/* <DevTool control={control} /> */}
     </Card>
   )
 }
