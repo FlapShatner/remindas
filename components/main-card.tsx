@@ -62,7 +62,6 @@ const MainCard: FunctionComponent<Props> = () => {
       description: "Reminder set!",
     })
     sendEvent(data)
-    // sendTest(data)
 
     console.log(data)
   }
@@ -154,7 +153,7 @@ const MainCard: FunctionComponent<Props> = () => {
           </div>
         </form>
       </CardContent>
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </Card>
   )
 }
