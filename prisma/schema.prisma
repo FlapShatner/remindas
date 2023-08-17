@@ -17,3 +17,13 @@ model Event {
   timeZone String
   utcTime DateTime  
 }
+
+model Test {
+  id Int @id @default(autoincrement())
+  currentDate String
+  startDate String
+  ISOStart String
+  endDate String
+  endUTC String
+  ISOEnd String
+}
