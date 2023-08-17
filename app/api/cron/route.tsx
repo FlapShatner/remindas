@@ -9,7 +9,8 @@ export async function GET() {
   const ISOStart = new Date(startDate).toISOString()
   const endDate = new Date(currentDate)
   endDate.setMinutes(endDate.getMinutes() + 1)
-  const ISOEnd = new Date(endDate).toISOString()
+  const endUTC = endDate.toUTCString()
+  const ISOEnd = new Date(endUTC).toISOString()
 
   const events = await prisma.event.findMany({
     where: {

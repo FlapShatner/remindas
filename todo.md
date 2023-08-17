@@ -14,7 +14,14 @@
 - api route for creating events (fallback for server action)
 - set up cron job
 - have server check that number is verified before sending reminders
--
+- option for anonymous account creation
+- cron job to delete events older than a day
+
+#### Anon
+
+- allow account creation with only screen name and pw
+- optionally use email address or oauth
+- encrypt data for events and numbers
 
 #### Styling
 
