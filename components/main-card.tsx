@@ -3,11 +3,12 @@
 
 import { FunctionComponent, useEffect } from "react"
 import { sendEvent } from "@/server/sendEvent"
+import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { z } from "zod"
 
 import { tzs } from "@/lib/tz"
+import { schema } from "@/lib/zod"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -43,19 +44,6 @@ const MainCard: FunctionComponent<Props> = () => {
   }
 
   const { toast } = useToast()
-  const schema = z.object({
-    number: z
-      .string()
-      .min(10, "Please enter a valid phone number with area code."),
-    title: z
-      .string()
-      .min(1, "Please enter a name for your reminder")
-      .max(40, "Maximum 40 characters"),
-    body: z.string().max(300, "Maximum 300 characters"),
-    date: z.string().min(1, "Please enter the date you want to be reminded on"),
-    time: z.string().min(1, "Please enter the time you want to be reminded at"),
-    timeZone: z.string().min(1, "Please select a time zone"),
-  })
 
   const {
     control,
@@ -166,6 +154,7 @@ const MainCard: FunctionComponent<Props> = () => {
           </div>
         </form>
       </CardContent>
+      <DevTool control={control} />
     </Card>
   )
 }

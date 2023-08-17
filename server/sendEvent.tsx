@@ -1,34 +1,15 @@
 "use server"
 
-// import moment from "moment-timezone"
-
-// import { prisma } from "@/lib/db"
-// import { FormValues } from "@/components/main-card"
-
-// export const sendEvent = async (data: FormValues) => {
-//   const { number, title, body, date, time, timeZone } = data
-//   const dateTime = moment(`${date} ${time}`).tz(`${timeZone}`)
-
-//   const response = await prisma.event.create({
-//     data: {
-//       number,
-//       title,
-//       body,
-//       dateTime: dateTime.format(),
-//       timeZone,
-//       utcTime: dateTime.utc().format(),
-//     },
-//   })
-
-//   console.log("Response:", response)
-// }
-import { formatInTimeZone, utcToZonedTime, zonedTimeToUtc } from "date-fns-tz"
+import { formatInTimeZone, zonedTimeToUtc } from "date-fns-tz"
 
 import { prisma } from "@/lib/db"
+import { schema } from "@/lib/zod"
 import { FormValues } from "@/components/main-card"
 
 export const sendEvent = async (data: FormValues) => {
-  const { number, title, body, date, time, timeZone } = data
+  const validatedData = schema.parse(data)
+
+  const { number, title, body, date, time, timeZone } = validatedData
 
   // Combine the date and time into a single string, and convert to UTC taking into account the specific timezone
   const dateTimeString = formatInTimeZone(
@@ -36,7 +17,7 @@ export const sendEvent = async (data: FormValues) => {
     timeZone,
     "yyyy-MM-dd HH:mm:ssXXX"
   )
-  // const zonedDateTime = utcToZonedTime(dateTimeString, timeZone)
+
   const utcTime = zonedTimeToUtc(dateTimeString, timeZone)
 
   const response = await prisma.event.create({
