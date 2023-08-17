@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db"
 import { sendMessage } from "@/app/api/cron/twilio"
 
 export const fetchCache = "force-no-store"
+export const dynamic = "force-dynamic"
 
 export async function GET() {
   const currentDate = new Date()

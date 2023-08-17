@@ -3,6 +3,7 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/db"
 
 export const fetchCache = "force-no-store"
+export const dynamic = "force-dynamic"
 
 export async function GET() {
   const currentDate = new Date()
