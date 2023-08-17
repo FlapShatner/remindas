@@ -3,6 +3,8 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/db"
 import { sendMessage } from "@/app/api/cron/twilio"
 
+export const fetchCache = "force-no-store"
+
 export async function GET() {
   const currentDate = new Date()
   const startDate = currentDate.toUTCString()

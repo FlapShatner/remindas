@@ -2,6 +2,8 @@ import { NextResponse } from "next/server"
 
 import { prisma } from "@/lib/db"
 
+export const fetchCache = "force-no-store"
+
 export async function GET() {
   const currentDate = new Date()
   const startDate = currentDate.toUTCString()
