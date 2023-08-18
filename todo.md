@@ -30,6 +30,7 @@
 
 #### Users
 
+- get user phone number and add to user object
 - user accounts with clerk
 - add text opt-in to account creation form
 - create opt-in text verification flow

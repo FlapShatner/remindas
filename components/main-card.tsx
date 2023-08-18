@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { MainInput } from "@/components/main-input"
+import { NumberSelect } from "@/components/number-select"
 
 import ErrorMessage from "./error-message"
 import TzSelect from "./tz-select"
@@ -81,25 +82,24 @@ const MainCard: FunctionComponent<Props> = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full items-center gap-1">
             <div className="flex flex-col gap-2 md:flex-row">
-              <MainInput
-                id="number"
-                type="string"
-                placeholder="000-000-0000"
-                label="Your Phone #"
-                register={register}
-                name={"number"}
-              />
-              <MainInput
-                id="title"
-                type="text"
-                placeholder="What's happening?"
-                label="Remind me of:"
-                register={register}
-                name={"title"}
+              <Controller
+                name="number"
+                control={control}
+                render={({ field: { onChange } }) => (
+                  <NumberSelect onChange={onChange} />
+                )}
               />
             </div>
             <ErrorMessage>{errors.number?.message}</ErrorMessage>
-            <div className="flex flex-col gap-2 md:flex-row">
+            <MainInput
+              id="title"
+              type="text"
+              placeholder="What's happening?"
+              label="Remind me of:"
+              register={register}
+              name={"title"}
+            />
+            <div className="flex flex-col gap-2 md:flex-row mt-4">
               <MainInput
                 id="date"
                 type="date"

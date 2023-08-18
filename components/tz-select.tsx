@@ -31,7 +31,7 @@ const TzSelect: FC<TzSelectProps> = ({ onChange, tz }) => {
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select a Time Zone" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="overflow-auto">
           <SelectGroup>
             {zones.map((zone) => (
               <SelectItem key={zone.value} value={zone.value}>

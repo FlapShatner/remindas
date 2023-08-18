@@ -2,6 +2,7 @@ import { Metadata } from "next"
 
 import "@/styles/globals.css"
 import { Inter } from "next/font/google"
+import { ClerkProvider } from "@clerk/nextjs"
 
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
@@ -25,19 +26,21 @@ const inter = Inter({
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-      <html className={inter.className} lang="en" suppressHydrationWarning>
-        <body
-          className={cn("min-h-screen bg-background font-sans antialiased")}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              <SiteHeader />
-              <div className="flex-1">{children}</div>
-            </div>
-            <TailwindIndicator />
-          </ThemeProvider>
-        </body>
-      </html>
+      <ClerkProvider>
+        <html className={inter.className} lang="en" suppressHydrationWarning>
+          <body
+            className={cn("min-h-screen bg-background font-sans antialiased")}
+          >
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <div className="relative flex min-h-screen flex-col">
+                <SiteHeader />
+                <div className="flex-1">{children}</div>
+              </div>
+              <TailwindIndicator />
+            </ThemeProvider>
+          </body>
+        </html>
+      </ClerkProvider>
     </>
   )
 }

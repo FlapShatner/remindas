@@ -2,6 +2,8 @@ import {
   BellRing,
   LucideProps,
   Moon,
+  Phone,
+  PlusSquare,
   SunMedium,
   Twitter,
   type Icon as LucideIcon,
@@ -10,6 +12,8 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
+  phone: Phone,
+  add: PlusSquare,
   sun: SunMedium,
   moon: Moon,
   twitter: Twitter,
