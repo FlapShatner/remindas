@@ -18,3 +18,8 @@ export const schema = z.object({
   time: z.string().min(1, "Please enter a valid time"),
   timeZone: z.string().min(1, "Please select a time zone"),
 })
+
+export const numberSchema = z.object({
+  number: z.string(),
+  optIn: z.boolean(),
+})

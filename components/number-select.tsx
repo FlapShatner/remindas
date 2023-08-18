@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { UseFormRegister } from "react-hook-form"
 
 import { Label } from "@/components/ui/label"
 import {
@@ -14,6 +15,7 @@ import { Icons } from "./icons"
 
 interface NumberSelectProps {
   onChange: (value: string) => void
+  Trigger: React.ReactNode
 }
 
 interface Number {
@@ -21,16 +23,7 @@ interface Number {
   label: string
 }
 
-const NewNumber = () => {
-  return (
-    <div className=" mt-1 flex items-center gap-3 rounded-sm bg-muted p-2 cursor-pointer">
-      <Icons.add className="h-6 w-6" />
-      <span>Add New Number</span>
-    </div>
-  )
-}
-
-export const NumberSelect: FC<NumberSelectProps> = ({ onChange }) => {
+export const NumberSelect: FC<NumberSelectProps> = ({ onChange, Trigger }) => {
   const numbers = [{ value: "417-440-9290", label: "417-440-9290" }] as Number[]
   return (
     <div className="flex flex-col space-y-1.5">
@@ -47,14 +40,14 @@ export const NumberSelect: FC<NumberSelectProps> = ({ onChange }) => {
             {numbers.length > 0 &&
               numbers.map((number) => (
                 <SelectItem
-                  className="pl-10 text-lg"
+                  className="pl-12 text-lg"
                   key={number.value}
                   value={number.value}
                 >
                   {number.label}
                 </SelectItem>
               ))}
-            <NewNumber />
+            {Trigger}
           </SelectGroup>
         </SelectContent>
       </Select>

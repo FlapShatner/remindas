@@ -11,8 +11,18 @@ import { tzs } from "@/lib/tz"
 import { schema } from "@/lib/zod"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import AddNumberForm from "@/components/add-number/add-number-form"
+import { Icons } from "@/components/icons"
 import { MainInput } from "@/components/main-input"
 import { NumberSelect } from "@/components/number-select"
 
@@ -82,13 +92,29 @@ const MainCard: FunctionComponent<Props> = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full items-center gap-1">
             <div className="flex flex-col gap-2 md:flex-row">
-              <Controller
-                name="number"
-                control={control}
-                render={({ field: { onChange } }) => (
-                  <NumberSelect onChange={onChange} />
-                )}
-              />
+              <Dialog>
+                <Controller
+                  name="number"
+                  control={control}
+                  render={({ field: { onChange } }) => (
+                    <NumberSelect
+                      onChange={onChange}
+                      Trigger={
+                        <DialogTrigger className="w-full">
+                          <div className=" mt-1 flex cursor-pointer items-center gap-3 rounded-sm bg-muted p-2">
+                            <Icons.add className="h-6 w-6" />
+                            <span>Add A Number</span>
+                          </div>
+                        </DialogTrigger>
+                      }
+                    />
+                  )}
+                />
+                <DialogContent>
+                  <DialogHeader>New Number</DialogHeader>
+                  <AddNumberForm />
+                </DialogContent>
+              </Dialog>
             </div>
             <ErrorMessage>{errors.number?.message}</ErrorMessage>
             <MainInput
@@ -99,7 +125,8 @@ const MainCard: FunctionComponent<Props> = () => {
               register={register}
               name={"title"}
             />
-            <div className="flex flex-col gap-2 md:flex-row mt-4">
+            <ErrorMessage>{errors.title?.message}</ErrorMessage>
+            <div className="mt-4 flex flex-col gap-2 md:flex-row">
               <MainInput
                 id="date"
                 type="date"
@@ -125,10 +152,7 @@ const MainCard: FunctionComponent<Props> = () => {
               />
             </div>
             <ErrorMessage>
-              {errors.title?.message ??
-                errors.date?.message ??
-                errors.time?.message ??
-                null}
+              {errors.date?.message ?? errors.time?.message ?? null}
             </ErrorMessage>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="body">Note</Label>
