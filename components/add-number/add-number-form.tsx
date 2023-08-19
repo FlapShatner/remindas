@@ -1,18 +1,18 @@
 import { FC } from "react"
+import { useUser } from "@clerk/nextjs"
 import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod"
 
+import { updateMetadata } from "@/lib/utils"
 import { numberSchema } from "@/lib/zod"
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/add-number/add-number-input"
@@ -27,8 +27,11 @@ const AddNumberForm: FC<AddNumberFormProps> = () => {
     defaultValues: { number: "", optIn: false },
   })
 
+  const { user } = useUser()
+
   const onSubmit = (values: z.infer<typeof numberSchema>) => {
     console.log(values)
+    updateMetadata(user, values.number, values.optIn)
   }
   return (
     <Form {...form}>

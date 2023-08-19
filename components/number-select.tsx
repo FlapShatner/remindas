@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useUser } from "@clerk/nextjs"
 import { UseFormRegister } from "react-hook-form"
 
 import { Label } from "@/components/ui/label"
@@ -22,9 +23,31 @@ interface Number {
   value: string
   label: string
 }
+interface UserMetadata {
+  number: string
+}
+
+interface UserUnsafeMetadata {
+  [key: string]: UserMetadata
+}
 
 export const NumberSelect: FC<NumberSelectProps> = ({ onChange, Trigger }) => {
-  const numbers = [{ value: "417-440-9290", label: "417-440-9290" }] as Number[]
+  const { user } = useUser()
+  const metadata = user?.unsafeMetadata as UserUnsafeMetadata
+  let numbers = [] as Number[]
+
+  const transformMetaData = (data: unknown) => {
+    const metadata = data as UserUnsafeMetadata
+    return Object.values(metadata).map(({ number }) => ({
+      value: number,
+      label: number,
+    }))
+  }
+
+  if (metadata) {
+    numbers = transformMetaData(metadata)
+  }
+
   return (
     <div className="flex flex-col space-y-1.5">
       <Label className="text-xl" htmlFor="number">
