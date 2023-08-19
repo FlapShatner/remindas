@@ -73,7 +73,7 @@ const MainCard: FunctionComponent<Props> = () => {
       description: "Reminder set!",
     })
     sendEvent(data)
-
+    reset(defaultValues)
     console.log(data)
   }
 
