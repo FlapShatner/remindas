@@ -33,7 +33,7 @@ export async function GET() {
     await Promise.all(
       events.map(async (event) => {
         const formattedEvent = {
-          body: `${event.title}\n${event.body || ""}`,
+          body: `Reminder:\n${event.title}\n${event.body || ""}`,
           number: event.number,
         }
         const result = await sendMessage(formattedEvent)

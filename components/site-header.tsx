@@ -1,7 +1,9 @@
 import Link from "next/link"
 import { UserButton } from "@clerk/nextjs"
+import { dark } from "@clerk/themes"
 
 import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
@@ -45,7 +47,23 @@ export function SiteHeader() {
               </div>
             </Link>
             <ThemeToggle />
-            <UserButton />
+            <UserButton
+              appearance={{
+                baseTheme: dark,
+                elements: {
+                  userButtonPopoverCard: cn(
+                    "border border-border bg-card text-foreground"
+                  ),
+                  userButtonPopoverActionButtonText: cn(
+                    "text-sm text-foreground"
+                  ),
+                  userButtonPopoverActionButtonIcon: cn(
+                    "h-4 w-4 text-foreground"
+                  ),
+                  userButtonPopoverFooterText: cn("text-foreground"),
+                },
+              }}
+            />
           </nav>
         </div>
       </div>

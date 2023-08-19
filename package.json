@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
+    "@clerk/themes": "^1.7.5",
     "@clerk/types": "^3.49.0",
     "@hookform/resolvers": "^3.2.0",
     "@prisma/client": "^5.1.1",
