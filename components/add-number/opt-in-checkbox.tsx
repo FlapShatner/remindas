@@ -10,7 +10,7 @@ interface OptInProps {
 const OptInCheckbox: FC<OptInProps> = ({ checked, onCheckedChange }) => {
   const subtext = 'You can opt-out at any time online or by replying "STOP".'
   return (
-    <div className="items-top mt-2 flex space-x-2">
+    <div className="items-top flex space-x-2">
       <Checkbox
         checked={checked}
         onCheckedChange={onCheckedChange}

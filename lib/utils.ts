@@ -23,6 +23,13 @@ export const updateMetadata = async (
       }
     }
     if (typeof metadata === "object") {
+      const isNumberExist = Object.values(metadata).some(
+        (item: any) => item.number === number
+      )
+      if (isNumberExist) {
+        console.log("Number already exists!")
+        return
+      }
       const len = Object.keys(metadata).length
       const newMetadata = {
         ...metadata,

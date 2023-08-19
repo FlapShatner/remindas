@@ -21,5 +21,7 @@ export const schema = z.object({
 
 export const numberSchema = z.object({
   number: z.string(),
-  optIn: z.boolean(),
+  optIn: z.boolean().refine((val) => val === true, {
+    message: "Please agree to the terms and conditions",
+  }),
 })

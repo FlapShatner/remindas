@@ -17,25 +17,31 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/add-number/add-number-input"
 
+import ErrorMessage from "../error-message"
 import OptInCheckbox from "./opt-in-checkbox"
 
-interface AddNumberFormProps {}
+interface AddNumberFormProps {
+  setOpen: (open: boolean) => void
+}
 
-const AddNumberForm: FC<AddNumberFormProps> = () => {
+const AddNumberForm: FC<AddNumberFormProps> = ({ setOpen }) => {
   const form = useForm<z.infer<typeof numberSchema>>({
     resolver: zodResolver(numberSchema),
     defaultValues: { number: "", optIn: false },
   })
 
+  const errors = form.formState.errors
+
   const { user } = useUser()
 
   const onSubmit = (values: z.infer<typeof numberSchema>) => {
-    console.log(values)
+    // console.log(values)
     updateMetadata(user, values.number, values.optIn)
+    setOpen(false)
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <FormField
           control={form.control}
           name="number"
@@ -48,6 +54,7 @@ const AddNumberForm: FC<AddNumberFormProps> = () => {
             </FormItem>
           )}
         />
+        <ErrorMessage>{errors && errors.optIn?.message}</ErrorMessage>
         <FormField
           control={form.control}
           name="optIn"

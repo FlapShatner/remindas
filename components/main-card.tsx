@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { FunctionComponent, useEffect } from "react"
+import { FunctionComponent, useEffect, useState } from "react"
 import { sendEvent } from "@/server/sendEvent"
 import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -44,7 +44,7 @@ export type FormValues = {
 const MainCard: FunctionComponent<Props> = () => {
   const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone
   const tz = tzs.filter((tz) => tz.value === userTz)[0].value
-
+  const [open, setOpen] = useState(false)
   const defaultValues = {
     number: "",
     title: "",
@@ -92,7 +92,7 @@ const MainCard: FunctionComponent<Props> = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full items-center gap-1">
             <div className="flex flex-col gap-2 md:flex-row">
-              <Dialog>
+              <Dialog onOpenChange={setOpen} open={open}>
                 <Controller
                   name="number"
                   control={control}
@@ -100,7 +100,10 @@ const MainCard: FunctionComponent<Props> = () => {
                     <NumberSelect
                       onChange={onChange}
                       Trigger={
-                        <DialogTrigger className="w-full">
+                        <DialogTrigger
+                          onClick={() => setOpen(true)}
+                          className="w-full"
+                        >
                           <div className=" mt-1 flex cursor-pointer items-center gap-3 rounded-sm bg-muted p-2">
                             <Icons.add className="h-6 w-6" />
                             <span>Add A Number</span>
@@ -112,7 +115,7 @@ const MainCard: FunctionComponent<Props> = () => {
                 />
                 <DialogContent>
                   <DialogHeader>New Number</DialogHeader>
-                  <AddNumberForm />
+                  <AddNumberForm setOpen={setOpen} />
                 </DialogContent>
               </Dialog>
             </div>
