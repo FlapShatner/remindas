@@ -11,23 +11,16 @@ import { tzs } from "@/lib/tz"
 import { schema } from "@/lib/zod"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import AddNumberForm from "@/components/add-number/add-number-form"
-import { Icons } from "@/components/icons"
 import { MainInput } from "@/components/main-input"
-import { NumberSelect } from "@/components/number-select"
 
 import ErrorMessage from "./error-message"
+import { Icons } from "./icons"
+import AddNumberForm from "./number/add-number-form"
+import { NumberSelect } from "./number/number-select"
 import TzSelect from "./tz-select"
+import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog"
 import { useToast } from "./ui/use-toast"
 
 interface Props {}
@@ -45,6 +38,7 @@ const MainCard: FunctionComponent<Props> = () => {
   const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone
   const tz = tzs.filter((tz) => tz.value === userTz)[0].value
   const [open, setOpen] = useState(false)
+  const [selectOpen, setSelectOpen] = useState(false)
   const defaultValues = {
     number: "",
     title: "",
@@ -129,7 +123,7 @@ const MainCard: FunctionComponent<Props> = () => {
               name={"title"}
             />
             <ErrorMessage>{errors.title?.message}</ErrorMessage>
-            <div className="mt-4 flex flex-col gap-2 md:flex-row">
+            <div className=" flex flex-col gap-2 md:flex-row">
               <MainInput
                 id="date"
                 type="date"

@@ -6,6 +6,22 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const updateNumber = async (
+  user: UserResource | null | undefined,
+  number: string
+) => {
+  try {
+    const response = await user?.createPhoneNumber({
+      phoneNumber: number,
+    })
+    if (response) {
+      console.log(response)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const updateMetadata = async (
   user: UserResource | null | undefined,
   number: string,
@@ -45,4 +61,18 @@ export const updateMetadata = async (
   } catch (error) {
     console.log(error)
   }
+}
+
+export const getNumbers = (user: UserResource | null | undefined) => {
+  const userNumbers = user?.phoneNumbers
+  if (userNumbers && userNumbers.length > 0) {
+    const numbers = userNumbers.map((number) => {
+      return {
+        label: number.toString().substring(2),
+        value: number.toString().substring(2),
+      }
+    })
+    return numbers
+  }
+  return []
 }

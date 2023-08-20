@@ -1,5 +1,11 @@
 ### Todo
 
+'
+
+## Do Now:
+
+Change number select to "add number" button or a readonly input displaying number with a "change number" link under it.
+
 #### App
 
 - Refactor main-card.tsx

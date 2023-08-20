@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod"
 
-import { updateMetadata } from "@/lib/utils"
+import { updateMetadata, updateNumber } from "@/lib/utils"
 import { numberSchema } from "@/lib/zod"
 import { Button } from "@/components/ui/button"
 import {
@@ -15,7 +15,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/add-number/add-number-input"
+import { Input } from "@/components/number/add-number-input"
 
 import ErrorMessage from "../error-message"
 import OptInCheckbox from "./opt-in-checkbox"
@@ -37,6 +37,7 @@ const AddNumberForm: FC<AddNumberFormProps> = ({ setOpen }) => {
   const onSubmit = (values: z.infer<typeof numberSchema>) => {
     // console.log(values)
     updateMetadata(user, values.number, values.optIn)
+    updateNumber(user, values.number)
     setOpen(false)
   }
   return (

@@ -1,7 +1,7 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import { useUser } from "@clerk/nextjs"
-import { UseFormRegister } from "react-hook-form"
 
+import { getNumbers } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
 import {
   Select,
@@ -11,8 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-
-import { Icons } from "./icons"
+import { Icons } from "@/components/icons"
 
 interface NumberSelectProps {
   onChange: (value: string) => void
@@ -20,33 +19,13 @@ interface NumberSelectProps {
 }
 
 interface Number {
-  value: string
-  label: string
-}
-interface UserMetadata {
-  number: string
-}
-
-interface UserUnsafeMetadata {
-  [key: string]: UserMetadata
+  value?: string
+  label?: string
 }
 
 export const NumberSelect: FC<NumberSelectProps> = ({ onChange, Trigger }) => {
   const { user } = useUser()
-  const metadata = user?.unsafeMetadata as UserUnsafeMetadata
-  let numbers = [] as Number[]
-
-  const transformMetaData = (data: unknown) => {
-    const metadata = data as UserUnsafeMetadata
-    return Object.values(metadata).map(({ number }) => ({
-      value: number,
-      label: number,
-    }))
-  }
-
-  if (metadata) {
-    numbers = transformMetaData(metadata)
-  }
+  const numbers: Number[] = getNumbers(user)
 
   return (
     <div className="flex flex-col space-y-1.5">
@@ -60,12 +39,13 @@ export const NumberSelect: FC<NumberSelectProps> = ({ onChange, Trigger }) => {
         </SelectTrigger>
         <SelectContent className="overflow-auto">
           <SelectGroup>
-            {numbers.length > 0 &&
+            {numbers &&
+              numbers.length > 0 &&
               numbers.map((number) => (
                 <SelectItem
                   className="pl-12 text-lg"
                   key={number.value}
-                  value={number.value}
+                  value={number.value as string}
                 >
                   {number.label}
                 </SelectItem>

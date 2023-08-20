@@ -24,7 +24,6 @@ export async function GET() {
     },
   })
 
-  // console.log("ISOStart", ISOStart, "ISOEnd", ISOEnd)
   if (events.length < 1) {
     return NextResponse.json({ message: "No events", success: true })
   }
