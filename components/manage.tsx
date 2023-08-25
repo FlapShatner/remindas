@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation"
-import { getEvents } from "@/server/getEvents"
 import { auth } from "@clerk/nextjs"
 
 import {
@@ -13,14 +12,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import EventItem from "./event-item"
 import { Icons } from "./icons"
 
-interface ManageProps {}
+interface ManageProps {
+  events: any
+}
 
-const Manage = async () => {
+const Manage = ({ events }) => {
   const { userId } = auth()
   if (!userId) {
     redirect("/")
   }
-  const events = await getEvents(userId)
 
   return (
     <Card className="m-auto w-full border md:w-[560px] ">

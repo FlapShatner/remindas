@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { redirect } from "next/navigation"
+import { getEvents } from "@/server/getEvents"
 import { auth } from "@clerk/nextjs"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -8,12 +9,13 @@ import Manage from "@/components/manage"
 
 interface MainProps {}
 
-const Main: FC<MainProps> = () => {
+const Main: FC<MainProps> = async () => {
   const { userId } = auth()
 
   if (!userId) {
     redirect("/")
   }
+  const events = await getEvents(userId)
 
   return (
     <div>
@@ -30,7 +32,7 @@ const Main: FC<MainProps> = () => {
           <MainCard userId={userId} />
         </TabsContent>
         <TabsContent value="manage">
-          <Manage />
+          <Manage events={events} />
         </TabsContent>
       </Tabs>
     </div>

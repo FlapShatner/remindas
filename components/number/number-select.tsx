@@ -27,6 +27,10 @@ export const NumberSelect: FC<NumberSelectProps> = ({ onChange, Trigger }) => {
   const { user } = useUser()
   const numbers: Number[] = getNumbers(user)
 
+  function formatPhoneNumber(number: any) {
+    return number.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
+  }
+
   return (
     <div className="m-auto flex w-full flex-col space-y-1.5">
       <div>
@@ -36,7 +40,10 @@ export const NumberSelect: FC<NumberSelectProps> = ({ onChange, Trigger }) => {
         <Select name="number" onValueChange={onChange}>
           <SelectTrigger className="w-[240px] text-xl">
             <Icons.phone className="h-5 w-5" />
-            <SelectValue placeholder="000-000-0000" />
+            <SelectValue
+              defaultValue="000-000-0000"
+              placeholder="000-000-0000"
+            />
           </SelectTrigger>
           <SelectContent className="overflow-auto">
             <SelectGroup>
@@ -48,7 +55,7 @@ export const NumberSelect: FC<NumberSelectProps> = ({ onChange, Trigger }) => {
                     key={number.value}
                     value={number.value as string}
                   >
-                    {number.label}
+                    {formatPhoneNumber(number.label)}
                   </SelectItem>
                 ))}
               {Trigger}
