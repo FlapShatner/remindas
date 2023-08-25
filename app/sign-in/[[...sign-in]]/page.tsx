@@ -1,17 +1,16 @@
-import { SignUp } from "@clerk/nextjs"
+import { SignIn } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
 
 export default function Page() {
   return (
-    <div className="my-10 flex w-full justify-center">
-      <SignUp
-        signInUrl="/sign-in"
+    <div className="mt-10 flex w-full justify-center">
+      <SignIn
+        signUpUrl="/sign-up"
         appearance={{
           baseTheme: dark,
           elements: {
             card: "border border-border bg-card text-foreground",
-            formFieldInput__phoneNumber: "bg-card",
-            phoneInputBox: "bg-[#1E283D]",
+            formFieldAction: "text-blue-500",
             footerActionLink: "text-blue-500",
           },
         }}

@@ -78,7 +78,7 @@ const MainCard: FunctionComponent<Props> = () => {
   }, [isSubmitSuccessful, reset, formState])
 
   return (
-    <Card className="m-auto w-full md:w-[560px]">
+    <Card className="m-auto my-10 w-full md:w-[560px]">
       <CardHeader>
         <CardTitle>Set A Reminder</CardTitle>
       </CardHeader>

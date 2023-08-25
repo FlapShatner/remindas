@@ -4,10 +4,10 @@ export const siteConfig = {
   name: "Remindas",
   description: "A simple reminder app for forgetful people.",
   mainNav: [
-    {
-      title: "Home",
-      href: "/",
-    },
+    // {
+    // title: "Home",
+    // href: "/",
+    // },
   ],
   links: {
     twitter: "https://twitter.com/jRobertsWebDev",

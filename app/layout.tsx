@@ -5,6 +5,7 @@ import { Inter } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 
 import { cn } from "@/lib/utils"
+import { Toaster } from "@/components/ui/toaster"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               </div>
               <TailwindIndicator />
             </ThemeProvider>
+            <Toaster />
           </body>
         </html>
       </ClerkProvider>
