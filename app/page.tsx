@@ -1,8 +1,4 @@
-import { currentUser } from "@clerk/nextjs"
-
-import { Toaster } from "@/components/ui/toaster"
 import Landing from "@/components/landing"
-import MainCard from "@/components/main-card"
 
 export default async function IndexPage() {
   return (

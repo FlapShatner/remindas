@@ -6,7 +6,7 @@ import { prisma } from "@/lib/db"
 import { schema } from "@/lib/zod"
 import { FormValues } from "@/components/main-card"
 
-export const sendEvent = async (data: FormValues) => {
+export const sendEvent = async (data: FormValues, userId: string) => {
   const validatedData = schema.parse(data)
 
   const { number, title, body, date, time, timeZone } = validatedData
@@ -22,6 +22,7 @@ export const sendEvent = async (data: FormValues) => {
 
   const response = await prisma.event.create({
     data: {
+      userId,
       number,
       title,
       body,
@@ -30,6 +31,5 @@ export const sendEvent = async (data: FormValues) => {
       utcTime: utcTime.toISOString(),
     },
   })
-
   console.log("Response:", response)
 }

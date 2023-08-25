@@ -2,9 +2,11 @@ import {
   BellRing,
   LucideProps,
   Moon,
+  Pencil,
   Phone,
   PlusSquare,
   SunMedium,
+  Trash2,
   Twitter,
   type Icon as LucideIcon,
 } from "lucide-react"
@@ -12,6 +14,8 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
+  trash: Trash2,
+  pencil: Pencil,
   phone: Phone,
   add: PlusSquare,
   sun: SunMedium,

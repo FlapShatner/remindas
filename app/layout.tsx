@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs"
 
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
+import Sidebar from "@/components/sidebar"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -33,9 +34,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             className={cn("min-h-screen bg-background font-sans antialiased")}
           >
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <div className="relative flex min-h-screen flex-col">
+              <div className="relative flex flex-col">
                 <SiteHeader />
-                <div className="flex-1">{children}</div>
+                {children}
               </div>
               <TailwindIndicator />
             </ThemeProvider>

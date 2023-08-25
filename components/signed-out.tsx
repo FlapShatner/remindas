@@ -1,11 +1,11 @@
 import { FC } from "react"
 
+import { Skeleton } from "./ui/skeleton"
+
 interface SignedOutProps {}
 
 const SignedOutPlaceholder: FC<SignedOutProps> = () => {
-  return (
-    <div className=" flex h-8 w-8 items-center justify-center rounded-full border border-border bg-transparent text-lg text-muted" />
-  )
+  return <Skeleton className="h-7 w-7 rounded-full" />
 }
 
 export default SignedOutPlaceholder

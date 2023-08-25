@@ -23,7 +23,9 @@ import TzSelect from "./tz-select"
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog"
 import { useToast } from "./ui/use-toast"
 
-interface Props {}
+interface Props {
+  userId: string
+}
 
 export type FormValues = {
   number: string
@@ -34,7 +36,7 @@ export type FormValues = {
   timeZone: string
 }
 
-const MainCard: FunctionComponent<Props> = () => {
+const MainCard: FunctionComponent<Props> = ({ userId }) => {
   const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone
   const tz = tzs.filter((tz) => tz.value === userTz)[0].value
   const [open, setOpen] = useState(false)
@@ -66,7 +68,7 @@ const MainCard: FunctionComponent<Props> = () => {
     toast({
       description: "Reminder set!",
     })
-    sendEvent(data)
+    sendEvent(data, userId)
     reset(defaultValues)
     console.log(data)
   }
@@ -78,14 +80,14 @@ const MainCard: FunctionComponent<Props> = () => {
   }, [isSubmitSuccessful, reset, formState])
 
   return (
-    <Card className="m-auto my-10 w-full md:w-[560px]">
+    <Card className="m-auto w-full border md:w-[560px] ">
       <CardHeader>
-        <CardTitle>Set A Reminder</CardTitle>
+        <CardTitle className=" text-2xl">New Reminder</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full items-center gap-1">
-            <div className="flex flex-col gap-2 md:flex-row">
+            <div className="flex gap-2 md:flex-row">
               <Dialog onOpenChange={setOpen} open={open}>
                 <Controller
                   name="number"
