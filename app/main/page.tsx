@@ -14,13 +14,14 @@ const Main: FC<MainProps> = () => {
   if (!userId) {
     redirect("/")
   }
+
   return (
     <div>
       <Tabs
         className="mb-3 mt-10 flex flex-col justify-center"
         defaultValue="create"
       >
-        <TabsList className="w-min m-auto">
+        <TabsList className="m-auto w-min">
           <TabsTrigger value="create">Create Reminder</TabsTrigger>
           <TabsTrigger value="manage">Manage Reminders</TabsTrigger>
         </TabsList>
