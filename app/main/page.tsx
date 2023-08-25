@@ -9,7 +9,7 @@ import Manage from "@/components/manage"
 
 interface MainProps {}
 
-const Main: FC<MainProps> = async () => {
+const Main = async () => {
   const { userId } = auth()
 
   if (!userId) {
