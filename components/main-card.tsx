@@ -2,6 +2,7 @@
 "use client"
 
 import { FunctionComponent, useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { sendEvent } from "@/server/sendEvent"
 import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -50,6 +51,8 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
     timeZone: tz,
   }
 
+  const router = useRouter()
+
   const { toast } = useToast()
 
   const {
@@ -65,19 +68,28 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
   })
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const withNumber = {
+      number: data.number,
+      title: "",
+      body: "",
+      date: "",
+      time: "",
+      timeZone: tz,
+    }
     toast({
       description: "Reminder set!",
     })
     sendEvent(data, userId)
-    reset(defaultValues)
+    reset(withNumber)
+    router.refresh()
     console.log(data)
   }
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset(defaultValues)
-    }
-  }, [isSubmitSuccessful, reset, formState])
+  // useEffect(() => {
+  //   if (isSubmitSuccessful) {
+  //     reset()
+  //   }
+  // }, [isSubmitSuccessful, reset, formState])
 
   return (
     <Card className="m-auto w-full border md:w-[560px] ">

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC } from "react"
 import { useUser } from "@clerk/nextjs"
 
 import { getNumbers } from "@/lib/utils"
@@ -34,16 +34,11 @@ export const NumberSelect: FC<NumberSelectProps> = ({ onChange, Trigger }) => {
   return (
     <div className="m-auto flex w-full flex-col space-y-1.5">
       <div>
-        <Label className="" htmlFor="number">
-          Mobile #
-        </Label>
+        <Label htmlFor="number">Mobile #</Label>
         <Select name="number" onValueChange={onChange}>
           <SelectTrigger className="w-[240px] text-xl">
             <Icons.phone className="h-5 w-5" />
-            <SelectValue
-              defaultValue="000-000-0000"
-              placeholder="000-000-0000"
-            />
+            <SelectValue placeholder="000-000-0000" />
           </SelectTrigger>
           <SelectContent className="overflow-auto">
             <SelectGroup>

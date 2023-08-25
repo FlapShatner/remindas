@@ -1,16 +1,11 @@
 import { redirect } from "next/navigation"
 import { auth } from "@clerk/nextjs"
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { Accordion } from "@/components/ui/accordion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 import EventItem from "./event-item"
-import { Icons } from "./icons"
+import { ScrollArea } from "./ui/scroll-area"
 
 interface ManageProps {
   events: any
@@ -29,11 +24,13 @@ const Manage = ({ events }) => {
       </CardHeader>
       <CardContent>
         {events.length < 1 && <span>No reminders yet!</span>}
-        <Accordion type="single" collapsible>
-          {events.map((event) => (
-            <EventItem event={event} />
-          ))}
-        </Accordion>
+        <ScrollArea className="h-96">
+          <Accordion type="single" collapsible>
+            {events.map((event) => (
+              <EventItem event={event} />
+            ))}
+          </Accordion>
+        </ScrollArea>
       </CardContent>
     </Card>
   )

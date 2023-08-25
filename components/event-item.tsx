@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Icons } from "./icons"
+import DeleteEvent from "./delete-event"
 import {
   AccordionContent,
   AccordionItem,
@@ -47,10 +47,7 @@ const EventItem: FC<EventItemProps> = ({ event }) => {
       <AccordionContent>
         <div className="flex justify-between">
           <span className="">{event.body}</span>
-          <div className="flex gap-5">
-            <Icons.pencil className="h-5 w-5 cursor-pointer" />
-            <Icons.trash className="h-5 w-5 cursor-pointer" />
-          </div>
+          <DeleteEvent id={event.id} />
         </div>
       </AccordionContent>
     </AccordionItem>

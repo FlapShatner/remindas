@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { redirect } from "next/navigation"
 import { getEvents } from "@/server/getEvents"
 import { auth } from "@clerk/nextjs"
