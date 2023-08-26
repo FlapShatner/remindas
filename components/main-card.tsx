@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { MainInput } from "@/components/main-input"
 
+import { DatePicker } from "./date-picker"
 import ErrorMessage from "./error-message"
 import { Icons } from "./icons"
 import AddNumberForm from "./number/add-number-form"
@@ -142,14 +143,14 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
               name={"title"}
             />
             <ErrorMessage>{errors.title?.message}</ErrorMessage>
-            <div className=" flex w-full flex-col justify-between gap-4 md:flex-row md:gap-2">
-              <div className="mr-2 md:mr-0 flex w-full gap-2">
-                <MainInput
-                  id="date"
-                  type="date"
-                  label="Date:"
-                  register={register}
-                  name={"date"}
+            <div className=" flex w-full flex-col justify-between gap-4">
+              <div className="mr-2 flex w-full gap-2 md:mr-0">
+                <Controller
+                  name="date"
+                  control={control}
+                  render={({ field: { onChange } }) => (
+                    <DatePicker onChange={onChange} />
+                  )}
                 />
 
                 <MainInput
@@ -189,13 +190,13 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
               onClick={handleSubmit(onSubmit)}
               type="submit"
               className="mt-4 w-1/2"
-              variant="secondary"
             >
               Create Reminder
             </Button>
           </div>
         </form>
       </CardContent>
+      {/* <DevTool control={control} /> */}
     </Card>
   )
 }
