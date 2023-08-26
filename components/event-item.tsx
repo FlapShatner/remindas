@@ -35,11 +35,11 @@ const EventItem: FC<EventItemProps> = ({ event }) => {
         <div className="flex w-full flex-col">
           <div className="flex justify-between">
             <div className="flex gap-4">
-              <span>{date}</span>
-              <span>-</span>
-              <span>{time}</span>
+              <span className="text-xs sm:text-base">{date}</span>
+              <span className="text-xs sm:text-base">-</span>
+              <span className="text-xs sm:text-base">{time}</span>
             </div>
-            <span className="mr-6 text-secondary">{phoneNumber}</span>
+            <span className="mr-6 text-xs sm:text-base">{phoneNumber}</span>
           </div>
           <span className="text-start opacity-70">{event.title}</span>
         </div>

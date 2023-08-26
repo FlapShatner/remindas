@@ -98,10 +98,10 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
 
   return (
     <Card className="m-auto w-full border md:w-[560px] ">
-      <CardHeader>
+      <CardHeader className="hidden sm:block">
         <CardTitle className=" text-2xl">New Reminder</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="mt-4 sm:mt-0">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full items-center gap-1">
             <div className="flex gap-2 md:flex-row">
@@ -136,28 +136,31 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
             <MainInput
               id="title"
               type="text"
-              placeholder="What's happening?"
+              placeholder="Reminder name"
               label="Remind me of:"
               register={register}
               name={"title"}
             />
             <ErrorMessage>{errors.title?.message}</ErrorMessage>
-            <div className=" flex flex-col gap-2 md:flex-row">
-              <MainInput
-                id="date"
-                type="date"
-                label="On:"
-                register={register}
-                name={"date"}
-              />
+            <div className=" flex w-full flex-col justify-between gap-4 md:flex-row md:gap-2">
+              <div className="mr-2 md:mr-0 flex w-full gap-2">
+                <MainInput
+                  id="date"
+                  type="date"
+                  label="Date:"
+                  register={register}
+                  name={"date"}
+                />
 
-              <MainInput
-                id="time"
-                type="time"
-                label="At:"
-                register={register}
-                name={"time"}
-              />
+                <MainInput
+                  id="time"
+                  type="time"
+                  label="Time:"
+                  register={register}
+                  name={"time"}
+                />
+              </div>
+
               <Controller
                 name="timeZone"
                 control={control}

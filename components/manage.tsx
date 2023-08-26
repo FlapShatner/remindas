@@ -19,8 +19,10 @@ const Manage: FC<ManageProps> = ({ events }) => {
 
   return (
     <Card className="m-auto w-full border md:w-[560px] ">
-      <CardHeader className="flex flex-row gap-8 items-center justify-between">
-        <CardTitle className="text-2xl">Your Reminders</CardTitle>
+      <CardHeader className="flex flex-row items-center justify-between gap-8">
+        <CardTitle className="text-xl sm:text-2xl">{`Your ${
+          isScheduled ? "Scheduled" : "Sent"
+        } Reminders`}</CardTitle>
         <FilterEvents setIsScheduled={setIsScheduled} />
       </CardHeader>
       <CardContent>

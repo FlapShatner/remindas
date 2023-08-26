@@ -17,6 +17,11 @@ interface RootLayoutProps {
 export const metadata: Metadata = {
   title: "Remindas",
   description: "A simple reminder app built with Next.js and Tailwind CSS.",
+  // viewport: {
+  //   width: "device-width",
+  //   initialScale: 1,
+  //   maximumScale: 1,
+  // },
 }
 
 const inter = Inter({
