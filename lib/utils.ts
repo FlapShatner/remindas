@@ -76,3 +76,10 @@ export const getNumbers = (user: UserResource | null | undefined) => {
   }
   return []
 }
+
+export const isFutureDate = (date: string, time: string) => {
+  const inputDateTime = new Date(`${date}T${time}:00`)
+  const currentDateTime = new Date()
+
+  return inputDateTime > currentDateTime
+}

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { FunctionComponent, useEffect, useState } from "react"
+import { FunctionComponent, useState } from "react"
 import { useRouter } from "next/navigation"
 import { sendEvent } from "@/server/sendEvent"
 import { DevTool } from "@hookform/devtools"
@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 
 import { tzs } from "@/lib/tz"
+import { isFutureDate } from "@/lib/utils"
 import { schema } from "@/lib/zod"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -41,7 +42,6 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
   const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone
   const tz = tzs.filter((tz) => tz.value === userTz)[0].value
   const [open, setOpen] = useState(false)
-  const [selectOpen, setSelectOpen] = useState(false)
   const defaultValues = {
     number: "",
     title: "",
@@ -59,6 +59,8 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
     control,
     register,
     handleSubmit,
+    setError,
+    clearErrors,
     formState,
     formState: { errors, isSubmitSuccessful },
     reset,
@@ -68,6 +70,7 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
   })
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
+    clearErrors("date")
     const withNumber = {
       number: data.number,
       title: "",
@@ -76,20 +79,22 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
       time: "",
       timeZone: tz,
     }
-    toast({
-      description: "Reminder set!",
-    })
-    sendEvent(data, userId)
-    reset(withNumber)
-    router.refresh()
-    console.log(data)
+    if (isFutureDate(data.date, data.time)) {
+      toast({
+        description: "Reminder set!",
+      })
+      sendEvent(data, userId)
+      reset(withNumber)
+      router.refresh()
+      console.log(data)
+    } else {
+      setError("date", {
+        type: "manual",
+        message: "Please choose a future date and time",
+      })
+      return
+    }
   }
-
-  // useEffect(() => {
-  //   if (isSubmitSuccessful) {
-  //     reset()
-  //   }
-  // }, [isSubmitSuccessful, reset, formState])
 
   return (
     <Card className="m-auto w-full border md:w-[560px] ">

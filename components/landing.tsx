@@ -19,11 +19,13 @@ const Landing: FC<LandingProps> = () => {
   return (
     <div className="m-auto w-max py-12">
       <div>
-        <div className="flex justify-center gap-5 text-7xl">
-          <Icons.bell className="h-24 w-24" />
-          <h1>Remindas</h1>
+        <div className="flex gap-4 items-center justify-center">
+          <Icons.bell className="h-32 w-32" />
+          <h1 className="text-8xl leading-3 font-semibold text-center">
+            Remindas
+          </h1>
         </div>
-        <p className="text-center">{subtitle}</p>
+        <p className="text-center mt-4 text-xl">{subtitle}</p>
       </div>
       <div className="mt-14 flex flex-col justify-center gap-2">
         <Link className="m-auto" href="/sign-in">
@@ -31,7 +33,7 @@ const Landing: FC<LandingProps> = () => {
         </Link>
         <p className="text-center">Or</p>
         <Link className="m-auto" href="/sign-up">
-          <Button variant={"ghost"} className="text-center">
+          <Button variant={"outline"} className="text-center">
             Create an account
           </Button>
         </Link>
