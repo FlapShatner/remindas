@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation"
-import { getEvents } from "@/server/getEvents"
+import { getAllEvents } from "@/server/getEvents"
 import { auth } from "@clerk/nextjs"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -14,7 +14,7 @@ const Main = async () => {
   if (!userId) {
     redirect("/")
   }
-  const events = await getEvents(userId)
+  const events = await getAllEvents(userId)
 
   return (
     <div>

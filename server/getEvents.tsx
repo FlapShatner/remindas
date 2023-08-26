@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/db"
 
-export const getEvents = async (userId: string) => {
+export const getAllEvents = async (userId: string) => {
   const events = await prisma.event.findMany({
     where: {
       userId,

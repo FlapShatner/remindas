@@ -16,7 +16,8 @@ model Event {
   body String?
   dateTime String
   timeZone String
-  utcTime DateTime  
+  utcTime DateTime
+  sent Boolean @default(false)  
 }
 
 model Test {

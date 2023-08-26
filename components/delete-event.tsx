@@ -43,7 +43,11 @@ const DeleteEvent: FC<DeleteEventProps> = ({ id }) => {
         <div className="flex flex-col gap-8">
           <span className="">Are you sure you want to delete this event?</span>
           <div className="flex justify-between">
-            <Button className="w-32" variant="secondary">
+            <Button
+              onClick={() => setOpen(false)}
+              className="w-32"
+              variant="secondary"
+            >
               Cancel
             </Button>
             <Button onClick={handleClick} className="w-32">

@@ -1,5 +1,7 @@
 import {
   BellRing,
+  Check,
+  ChevronsUpDown,
   LucideProps,
   Moon,
   Pencil,
@@ -14,6 +16,8 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
+  check: Check,
+  chevrons: ChevronsUpDown,
   trash: Trash2,
   pencil: Pencil,
   phone: Phone,

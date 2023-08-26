@@ -15,12 +15,24 @@ export async function GET() {
   const endUTC = endDate.toUTCString()
   const ISOEnd = new Date(endUTC).toISOString()
 
+  const setSent = async (id: number) => {
+    await prisma.event.update({
+      where: {
+        id,
+      },
+      data: {
+        sent: true,
+      },
+    })
+  }
+
   const events = await prisma.event.findMany({
     where: {
       utcTime: {
         gte: ISOStart,
         lte: ISOEnd,
       },
+      sent: false,
     },
   })
 
@@ -35,6 +47,7 @@ export async function GET() {
           body: `Reminder:\n${event.title}\n${event.body || ""}`,
           number: event.number,
         }
+        await setSent(event.id)
         const result = await sendMessage(formattedEvent)
         console.log("Sent", result)
       })
