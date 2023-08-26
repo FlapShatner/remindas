@@ -43,7 +43,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <SiteHeader />
                 {children}
               </div>
-              <TailwindIndicator />
+              {/* <TailwindIndicator /> */}
             </ThemeProvider>
             <Toaster />
           </body>
