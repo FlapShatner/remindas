@@ -4,7 +4,6 @@
 import { FunctionComponent, useState } from "react"
 import { useRouter } from "next/navigation"
 import { sendEvent } from "@/server/sendEvent"
-import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 
@@ -196,7 +195,6 @@ const MainCard: FunctionComponent<Props> = ({ userId }) => {
           </div>
         </form>
       </CardContent>
-      {/* <DevTool control={control} /> */}
     </Card>
   )
 }

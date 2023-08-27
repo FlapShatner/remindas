@@ -6,6 +6,7 @@ import { Inter } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
 
+import { fontOverpass } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { SiteHeader } from "@/components/site-header"
@@ -19,11 +20,6 @@ interface RootLayoutProps {
 export const metadata: Metadata = {
   title: "Remindas",
   description: "A simple reminder app built with Next.js and Tailwind CSS.",
-  // viewport: {
-  //   width: "device-width",
-  //   initialScale: 1,
-  //   maximumScale: 1,
-  // },
 }
 
 const inter = Inter({
@@ -42,10 +38,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
           },
         }}
       >
-        <html className={inter.className} lang="en" suppressHydrationWarning>
-          <body
-            className={cn("min-h-screen bg-background font-sans antialiased")}
-          >
+        <html
+          className={fontOverpass.className}
+          lang="en"
+          suppressHydrationWarning
+        >
+          <body className={cn("min-h-screen bg-background antialiased")}>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <div className="relative flex flex-col">
                 <SiteHeader />

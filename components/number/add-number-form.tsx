@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { useUser } from "@clerk/nextjs"
-import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod"
@@ -75,7 +74,6 @@ const AddNumberForm: FC<AddNumberFormProps> = ({ setOpen }) => {
           Add
         </Button>
       </form>
-      {/* <DevTool control={form.control} /> */}
     </Form>
   )
 }

@@ -8,8 +8,8 @@ interface PageProps {}
 
 const UserProfilePage: FC<PageProps> = () => {
   return (
-    <div className="relative max-w-4xl m-auto">
-      <Button className="z-10 absolute top-8 right-16">
+    <div className="relative m-auto max-w-4xl">
+      <Button className="absolute right-16 top-8 z-10">
         <Link href="/">Back</Link>
       </Button>
       <UserProfile
