@@ -4,6 +4,7 @@ import { Metadata } from "next"
 import "@/styles/purple.css"
 import { Inter } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
+import { dark } from "@clerk/themes"
 
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
@@ -33,7 +34,14 @@ const inter = Inter({
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-      <ClerkProvider>
+      <ClerkProvider
+        appearance={{
+          baseTheme: dark,
+          variables: {
+            colorPrimary: "#6d28d9",
+          },
+        }}
+      >
         <html className={inter.className} lang="en" suppressHydrationWarning>
           <body
             className={cn("min-h-screen bg-background font-sans antialiased")}

@@ -9,7 +9,7 @@ export default function Page() {
         appearance={{
           baseTheme: dark,
           elements: {
-            card: "border border-border bg-card text-foreground",
+            card: "border border-border bg-darkcard text-foreground",
             formFieldInput__phoneNumber: "bg-card",
             phoneInputBox: "bg-[#1E283D]",
             footerActionLink: "text-blue-500",

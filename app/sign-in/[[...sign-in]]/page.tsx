@@ -9,9 +9,7 @@ export default function Page() {
         appearance={{
           baseTheme: dark,
           elements: {
-            card: "border border-border bg-card text-foreground",
-            formFieldAction: "text-blue-500",
-            footerActionLink: "text-blue-500",
+            card: "border border-border bg-darkcard text-foreground",
           },
         }}
       />

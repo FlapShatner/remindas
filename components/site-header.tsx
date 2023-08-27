@@ -37,6 +37,8 @@ export function SiteHeader() {
             <SignedIn>
               <UserButton
                 afterSignOutUrl="/"
+                userProfileMode="navigation"
+                userProfileUrl="/user-profile"
                 appearance={{
                   baseTheme: dark,
                   elements: {
