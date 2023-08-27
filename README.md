@@ -132,11 +132,9 @@ git push origin your-branch-name
 
 ## Meta
 
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
-
-Distributed under the XYZ license. See `LICENSE` for more information.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[My Github](https://github.com/FlapShatner)
+<br>
+jordan@jrobertsweb.dev
 
 ## Contributing
 
@@ -148,6 +146,7 @@ Distributed under the XYZ license. See `LICENSE` for more information.
 
 <!-- Markdown link & img dfn's -->
 
+[Github-url]: https://github.com/FlapShatner
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB
