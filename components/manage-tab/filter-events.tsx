@@ -8,8 +8,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-import { Icons } from "./icons"
-import { Button } from "./ui/button"
+import { Icons } from "../icons"
+import { Button } from "../ui/button"
 
 const filters = [
   {

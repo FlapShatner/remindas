@@ -4,7 +4,7 @@ import { formatInTimeZone, zonedTimeToUtc } from "date-fns-tz"
 
 import { prisma } from "@/lib/db"
 import { schema } from "@/lib/zod"
-import { FormValues } from "@/components/main-card"
+import { FormValues } from "@/components/create-tab/main-card"
 
 export const sendEvent = async (data: FormValues, userId: string) => {
   const validatedData = schema.parse(data)

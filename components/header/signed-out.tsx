@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Skeleton } from "./ui/skeleton"
+import { Skeleton } from "../ui/skeleton"
 
 interface SignedOutProps {}
 

@@ -14,16 +14,21 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { MainInput } from "@/components/main-input"
 
+import { Icons } from "../icons"
+import AddNumberForm from "../number/add-number-form"
+import { NumberSelect } from "../number/number-select"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "../ui/dialog"
+import { useToast } from "../ui/use-toast"
 import { DatePicker } from "./date-picker"
 import ErrorMessage from "./error-message"
-import { Icons } from "./icons"
-import AddNumberForm from "./number/add-number-form"
-import { NumberSelect } from "./number/number-select"
+import { MainInput } from "./main-input"
 import TzSelect from "./tz-select"
-import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog"
-import { useToast } from "./ui/use-toast"
 
 interface Props {
   userId: string

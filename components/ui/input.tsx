@@ -2,7 +2,7 @@ import * as React from "react"
 import { UseFormRegister } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
-import { FormValues } from "@/components/main-card"
+import { FormValues } from "@/components/create-tab/main-card"
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

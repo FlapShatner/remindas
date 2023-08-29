@@ -4,10 +4,15 @@ import { FC, useState } from "react"
 import { useRouter } from "next/navigation"
 import { deleteEvent } from "@/server/deleteEvent"
 
-import { Icons } from "./icons"
-import { Button } from "./ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog"
-import { useToast } from "./ui/use-toast"
+import { Icons } from "../icons"
+import { Button } from "../ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "../ui/dialog"
+import { useToast } from "../ui/use-toast"
 
 interface DeleteEventProps {
   id: number

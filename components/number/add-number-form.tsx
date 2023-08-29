@@ -14,9 +14,9 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form"
+import ErrorMessage from "@/components/create-tab/error-message"
 import { Input } from "@/components/number/add-number-input"
 
-import ErrorMessage from "../error-message"
 import OptInCheckbox from "./opt-in-checkbox"
 
 interface AddNumberFormProps {

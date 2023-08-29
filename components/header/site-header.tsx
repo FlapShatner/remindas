@@ -5,9 +5,9 @@ import { dark } from "@clerk/themes"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { MainNav } from "@/components/header/main-nav"
+import { ThemeToggle } from "@/components/header/theme-toggle"
 import { Icons } from "@/components/icons"
-import { MainNav } from "@/components/main-nav"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 import SignedOutPlaceholder from "./signed-out"
 
@@ -43,15 +43,15 @@ export function SiteHeader() {
                   baseTheme: dark,
                   elements: {
                     userButtonPopoverCard: cn(
-                      "border border-border bg-card text-foreground"
+                      "border border-border bg-darkcard text-foreground"
                     ),
-                    userButtonPopoverActionButtonText: cn(
-                      "text-sm text-foreground"
-                    ),
-                    userButtonPopoverActionButtonIcon: cn(
-                      "h-4 w-4 text-foreground"
-                    ),
-                    userButtonPopoverFooterText: cn("text-foreground"),
+                    // userButtonPopoverActionButtonText: cn(
+                    //   "text-sm text-foreground"
+                    // ),
+                    // userButtonPopoverActionButtonIcon: cn(
+                    //   "h-4 w-4 text-foreground"
+                    // ),
+                    // userButtonPopoverFooterText: cn("text-foreground"),
                   },
                 }}
               />

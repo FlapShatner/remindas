@@ -3,7 +3,7 @@ import { UseFormRegister } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
 
-import { FormValues } from "../main-card"
+import { FormValues } from "../create-tab/main-card"
 
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {

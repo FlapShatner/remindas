@@ -13,7 +13,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-import { Label } from "./ui/label"
+import { Label } from "../ui/label"
 
 interface DatePickerProps {
   onChange: (value: string) => void

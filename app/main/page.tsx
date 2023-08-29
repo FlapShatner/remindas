@@ -3,8 +3,8 @@ import { getAllEvents } from "@/server/getEvents"
 import { auth } from "@clerk/nextjs"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import MainCard from "@/components/main-card"
-import Manage from "@/components/manage"
+import MainCard from "@/components/create-tab/main-card"
+import Manage from "@/components/manage-tab/manage"
 
 interface MainProps {}
 

@@ -1,11 +1,11 @@
 import { FC } from "react"
 
-import DeleteEvent from "./delete-event"
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./ui/accordion"
+} from "../ui/accordion"
+import DeleteEvent from "./delete-event"
 
 interface EventItemProps {
   event: {

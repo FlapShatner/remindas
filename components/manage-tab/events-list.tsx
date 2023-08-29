@@ -3,8 +3,8 @@ import { Event } from "@prisma/client"
 
 import { Accordion } from "@/components/ui/accordion"
 
+import { ScrollArea } from "../ui/scroll-area"
 import EventItem from "./event-item"
-import { ScrollArea } from "./ui/scroll-area"
 
 interface EventsListProps {
   events: Event[]
