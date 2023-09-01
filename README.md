@@ -38,6 +38,7 @@ Using it, users can create an account and set reminders for the future. At the s
 <br>
 Auth and user management is handled with Clerk, with Planetscale to store user's reminder data. SMS messages are sent using Twilio's messaging API. Shadcn/ui is implemented as the UI components and all styling is in Tailwind.
 <br>
+Reminders are scheduled using a Vercel cron job that runs every minute. The cron job calls an API endpoint which checks the database for any reminders that are scheduled for the next minute. If any are found, the reminder is sent to the user's phone number using Twilio's messaging API. The reminder is then marked as sent.
 
 ## Usage example
 
